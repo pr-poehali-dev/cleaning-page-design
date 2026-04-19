@@ -5,12 +5,12 @@ const HERO_IMG = "https://cdn.poehali.dev/projects/a45d56ca-98a8-4ca2-ba50-28f77
 const BEFORE_AFTER_IMG = "https://cdn.poehali.dev/projects/a45d56ca-98a8-4ca2-ba50-28f77ea58e21/files/f6abeaf2-a2e5-4daa-8eca-9f41bcab9aab.jpg";
 
 const SERVICES = [
-  { icon: "Home", label: "Квартиры", price: "от 1 490 ₽", badge: "", popular: true, rating: "4.9" },
-  { icon: "Building2", label: "Дома и коттеджи", price: "от 3 900 ₽", badge: "", popular: false, rating: "4.8" },
-  { icon: "BriefcaseBusiness", label: "Офисы", price: "от 2 200 ₽", badge: "", popular: false, rating: "4.9" },
-  { icon: "Hammer", label: "После ремонта", price: "от 4 500 ₽", badge: "🔥 Популярно", popular: false, rating: "4.7" },
-  { icon: "Sparkles", label: "Мойка окон", price: "от 890 ₽", badge: "", popular: false, rating: "5.0" },
-  { icon: "Sofa", label: "Химчистка мебели", price: "от 1 200 ₽", badge: "", popular: false, rating: "4.8" },
+  { img: "https://cdn.poehali.dev/projects/a45d56ca-98a8-4ca2-ba50-28f77ea58e21/files/5a9bb698-6122-4029-8f56-03208332d24a.jpg", label: "Квартиры", price: "от 1 490 ₽", badge: "", popular: true, rating: "4.9" },
+  { img: "https://cdn.poehali.dev/projects/a45d56ca-98a8-4ca2-ba50-28f77ea58e21/files/095b12fb-5d33-40b0-893d-a56641a22ad9.jpg", label: "Дома и коттеджи", price: "от 3 900 ₽", badge: "", popular: false, rating: "4.8" },
+  { img: "https://cdn.poehali.dev/projects/a45d56ca-98a8-4ca2-ba50-28f77ea58e21/files/41be418f-729f-4c2f-a974-712ccd0008c3.jpg", label: "Офисы", price: "от 2 200 ₽", badge: "", popular: false, rating: "4.9" },
+  { img: "https://cdn.poehali.dev/projects/a45d56ca-98a8-4ca2-ba50-28f77ea58e21/files/52f3bcf8-cb3c-470c-8cd3-c2fae5033f47.jpg", label: "После ремонта", price: "от 4 500 ₽", badge: "🔥 Популярно", popular: false, rating: "4.7" },
+  { img: "https://cdn.poehali.dev/projects/a45d56ca-98a8-4ca2-ba50-28f77ea58e21/files/5a53ae75-541c-416f-ab0f-430ddb2501db.jpg", label: "Мойка окон", price: "от 890 ₽", badge: "", popular: false, rating: "5.0" },
+  { img: "https://cdn.poehali.dev/projects/a45d56ca-98a8-4ca2-ba50-28f77ea58e21/files/8a41ef25-2586-4abd-a6a5-8c05e5932aaa.jpg", label: "Химчистка мебели", price: "от 1 200 ₽", badge: "", popular: false, rating: "4.8" },
 ];
 
 const REVIEWS = [
@@ -311,28 +311,37 @@ export default function Index() {
             {SERVICES.map((s, i) => (
               <div
                 key={s.label}
-                className={`relative bg-white rounded-2xl p-6 border transition-all cursor-pointer group hover:-translate-y-1 hover:shadow-xl ${s.popular ? "border-[#2DCA8C] shadow-lg" : "border-gray-100 shadow-sm"}`}
+                className={`relative bg-white rounded-2xl overflow-hidden border transition-all cursor-pointer group hover:-translate-y-1 hover:shadow-xl ${s.popular ? "border-[#2DCA8C] shadow-lg" : "border-gray-100 shadow-sm"}`}
                 style={{ animationDelay: `${i * 0.08}s` }}
               >
                 {s.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2DCA8C] text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap shadow-md">
+                  <div className="absolute top-3 left-1/2 -translate-x-1/2 z-10 bg-[#2DCA8C] text-white text-xs font-bold px-4 py-1 rounded-full whitespace-nowrap shadow-md">
                     ⭐ {s.rating} · Топ выбор
                   </div>
                 )}
                 {s.badge && !s.popular && (
-                  <div className="absolute -top-3 left-4 bg-[#FF6B35] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                  <div className="absolute top-3 left-3 z-10 bg-[#FF6B35] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
                     {s.badge}
                   </div>
                 )}
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-4 transition-colors ${s.popular ? "bg-[#E8FAF3]" : "bg-[#F8F9FA] group-hover:bg-[#E8FAF3]"}`}>
-                  <Icon name={s.icon} size={26} className={s.popular ? "text-[#2DCA8C]" : "text-[#6B7280] group-hover:text-[#2DCA8C]"} fallback="Home" />
+                <div className="relative h-44 overflow-hidden">
+                  <img
+                    src={s.img}
+                    alt={s.label}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
-                <h3 className="font-semibold text-[#0F1923] text-lg mb-1">{s.label}</h3>
-                <p className="text-[#2DCA8C] font-bold text-base">{s.price}</p>
-                {!s.popular && <p className="text-[#6B7280] text-xs mt-1">★ {s.rating}</p>}
-                <button className={`mt-4 w-full py-2.5 rounded-xl text-sm font-semibold transition-all ${s.popular ? "bg-[#2DCA8C] text-white hover:bg-[#1fa870]" : "bg-[#F8F9FA] text-[#0F1923] hover:bg-[#E8FAF3] hover:text-[#2DCA8C]"}`}>
-                  Рассчитать →
-                </button>
+                <div className="p-5">
+                  <h3 className="font-semibold text-[#0F1923] text-lg mb-1">{s.label}</h3>
+                  <div className="flex items-center justify-between">
+                    <p className="text-[#2DCA8C] font-bold text-base">{s.price}</p>
+                    <p className="text-[#6B7280] text-xs">★ {s.rating}</p>
+                  </div>
+                  <button className={`mt-4 w-full py-2.5 rounded-xl text-sm font-semibold transition-all ${s.popular ? "bg-[#2DCA8C] text-white hover:bg-[#1fa870]" : "bg-[#F8F9FA] text-[#0F1923] hover:bg-[#E8FAF3] hover:text-[#2DCA8C]"}`}>
+                    Рассчитать →
+                  </button>
+                </div>
               </div>
             ))}
           </div>
