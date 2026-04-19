@@ -7,6 +7,7 @@ export default {
 		"./components/**/*.{ts,tsx}",
 		"./app/**/*.{ts,tsx}",
 		"./src/**/*.{ts,tsx}",
+			"./1776596095833160922.html"
 	],
 	prefix: "",
 	theme: {
@@ -17,8 +18,27 @@ export default {
 				'2xl': '1400px'
 			}
 		},
+		fontFamily: {
+			golos: ['Golos Text', 'sans-serif'],
+			montserrat: ['Montserrat', 'sans-serif'],
+		},
 		extend: {
 			colors: {
+				mint: {
+					DEFAULT: '#2DCA8C',
+					light: '#E8FAF3',
+					dark: '#1fa870',
+				},
+				orange: {
+					cta: '#FF6B35',
+					light: '#FFF0EB',
+				},
+				clean: {
+					bg: '#F8F9FA',
+					card: '#FFFFFF',
+					dark: '#0F1923',
+					muted: '#6B7280',
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
